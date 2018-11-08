@@ -5,6 +5,8 @@ def minus(a,b):
 def mul(a,b):
     return a * b
 def div(a,b):
+    # if b == 0
+    #     return 
     return a / b
 
 cal = input("Input(usage: 숫자 연산자 숫자)>>")
