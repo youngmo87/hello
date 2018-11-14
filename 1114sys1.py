@@ -1,6 +1,5 @@
 import sys
 
-print("가나다라마사")
 print(sys.argv)
 print(sys.argv[0])
 print(sys.argv[1])
@@ -21,6 +20,6 @@ if len(sa)<2:
     sys.exit()
 
 
-with open(sa[1], "r", encoding="utf-8") as file:
-    for line in file:
-        print(line.strip())
+# with open(sa[1], "r", encoding="utf-8") as file:
+#     for line in file:
+#         print(line.strip())
