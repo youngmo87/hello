@@ -1,5 +1,10 @@
 import sys
 
+print(sys.argv)
+print(sys.argv[0])
+print(sys.argv[1])
+
+
 from osclass import clear
 clear()
 from osclass import save
