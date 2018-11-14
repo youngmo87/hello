@@ -10,7 +10,7 @@ def clear():
 def save():
     if os.name == 'nt':
         os.system('git add --all')
-        os.system('git commit -am "sys.argv[1]')
+        os.system('git commit -am "sys.argv[1]"')
         os.system('git push -u origin master')
     else:
         os.system('python')

@@ -1,5 +1,6 @@
 import sys
 
+print("가나다라마사")
 print(sys.argv)
 print(sys.argv[0])
 print(sys.argv[1])
