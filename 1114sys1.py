@@ -7,8 +7,10 @@ print(sys.argv[1])
 
 from osclass import clear
 clear()
-from osclass import save
-save()
+# from osclass import save
+# save()
+
+
 
 def print_sys_vars():
     for i in [sys.version, sys.copyright, sys.path, sys.platform]:
