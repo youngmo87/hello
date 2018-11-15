@@ -3,14 +3,13 @@ import sys
 import datetime
 
 from osclass import clear
-clear()
 # from osclass import save
 # save()
 sa=sys.argv
 
-def print_sys_vars():
-    for i in [sys.version, sys.copyright, sys.path, sys.platform]:
-        print("----",i)
+# def print_sys_vars():
+#     for i in [sys.version, sys.copyright, sys.path, sys.platform]:
+#         print("----",i)
 
 time = datetime.datetime.now()
 default_msg = "{} 강의".format(time.strftime('%Y-%m-%d'))
@@ -26,9 +25,9 @@ else:
         commit_msg = input_msg
 
 
-if len(sa)<2:
-    print_sys_vars()
-    sys.exit()
+# if len(sa)<2:
+#     print_sys_vars()
+#     sys.exit()
 
 if os.name == 'nt':
     os.system('git add --all')
@@ -38,7 +37,7 @@ if os.name == 'nt':
 else:
     os.system('python')
 
-
+# clear()
 
 # with open(sa[1], "r", encoding="utf-8") as file:
 #     for line in file:
