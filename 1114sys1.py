@@ -14,7 +14,7 @@ def print_sys_vars():
     for i in [sys.version, sys.copyright, sys.path, sys.platform]:
         print("----",i)
 
-if len(sa)<2:
+# if len(sa)<2:
     print_sys_vars()
   
 
