@@ -7,6 +7,7 @@ clear()
 
 # from osclass import save
 # save()
+
 sa=sys.argv
 
 def print_sys_vars():
@@ -26,14 +27,14 @@ if has_msg:
     commit_msg = sa[1]
 
 else:
-    input_msg = input("뭘로저장하카마씀? (날짜별: Enter or 파일명을입력하세요 > ")
+    input_msg = input("뭘로저장하카마씀? (날짜별: Enter or Commit 설명을입력하세요 > ")
     if input_msg != '':
         commit_msg = input_msg
 
 if os.name == 'nt':
     os.system('git add --all')
     os.system('git commit -am "{}"'.format(commit_msg)) 
-    # 이거 문자열에 넣는거는 포맷을 이용해서 넣으면 된다 포맷 안이용하면 계속 오류남
+    # 이거 문자열에 넣는거는 포맷을 이용해서 넣으면 됨. 포맷 안이용하면 계속 오류남
     os.system('git push -u origin master')
 else:
     os.system('python')
