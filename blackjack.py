@@ -1,5 +1,6 @@
 import random
 
+
 cardsort = ['S','C','H','D']
 cardnum = [*'23456789FAJQK']
 
@@ -7,58 +8,69 @@ sort=len(cardsort)
 num=len(cardnum)
 
 cardtotal=[]
+class Card:
+    def __init__(self):
+        for i in range(sort):
+            for k in range(num):
+                cardtotal.append(cardsort[i]+cardnum[k])
+                random.shuffle(cardtotal)    
 
-for i in range(sort):
-    for k in range(num):
-        cardtotal.append(cardsort[i]+cardnum[k])
-
-# random.shuffle(cardtotal)
-
-choice1=cardtotal.pop(16)
-if choice1[1] == 'A':
-    choice1='10'
-
-if choice1[1] == 'F':
-    choice1='10'
-if choice1[1] == 'J':
-    choice1='10'
-if choice1[1] == 'Q':
-    choice1='10'
-if choice1[1] == 'K':
-    choice1='10'
-
-choice2=cardtotal.pop(1)
-if choice2[1] == 'A':
-    choice2='10'
-if choice2[1] == 'F':
-    choice2='10'
-if choice2[1] == 'J':
-    choice2='10'
-if choice2[1] == 'Q':
-    choice2='10'
-if choice2[1] == 'K':
-    choice2='10'
+    def cardpick1(self, pick):
+        self.pick = cardtotal.pop(0)
+    
+    def cardpick2(self, pick):
+        self.pick = 
 
 
-if len(choice1)==2:
-    a= int(choice1[1])
-if len(choice2)==2:
-    b =int(choice2[1])
+class CardPick
 
+
+class CardCalc(Card):
+
+
+
+
+choice1=cardtotal.pop(0)
+
+if 'A' in choice1: 
+    choice1 = choice1[0] + '11' 
+if 'J' in choice1: 
+    choice1 = choice1[0] + '10' 
+if 'Q' in choice1: 
+    choice1 = choice1[0] + '10' 
+if 'K' in choice1: 
+    choice1 = choice1[0] + '10' 
+if 'F' in choice1: 
+    choice1 = choice1[0] + '10' 
+
+
+choice2=cardtotal.pop(0)
+
+if 'A' in choice2: 
+    choice2 = choice2[0] + '11' 
+if 'J' in choice2: 
+    choice2 = choice2[0] + '10' 
+if 'Q' in choice2: 
+    choice2 = choice2[0] + '10' 
+if 'K' in choice2: 
+    choice2 = choice2[0] + '10' 
+if 'F' in choice2: 
+    choice2 = choice2[0] + '10' 
+
+if len(choice1)<=2:
+    a = int(choice1[1])
 else:
-    a=int(10)
-    b=int(10)
+    a=10
+
+if len(choice2)<=2:
+    b = int(choice2[1])
+else:
+    b=10
 
 cardvalue = a + b
-
-
 print(cardvalue)
 
-# class ValueSum:
-#     def __init__(self):
-#         self.value = int(choice1[-1]) + int(choice2[-1])
 
 
-# tyrthis=ValueSum()
+tyrthis=ValueSum()
 
-#브랜치테스트
