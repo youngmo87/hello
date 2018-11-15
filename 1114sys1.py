@@ -27,7 +27,7 @@ if has_msg:
     commit_msg = sa[1]
 
 else:
-    input_msg = input("뭘로저장하카마씀? (날짜별: Enter or Commit 설명을입력하세요 > ")
+    input_msg = input("뭘로저장하카마씀? (날짜로는 그냥 Enter 혹은 어떻게 commit 할지 입력하세요 > ")
     if input_msg != '':
         commit_msg = input_msg
 
