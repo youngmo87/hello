@@ -21,3 +21,7 @@ print("desc>>", numbers)
 print("desc>>", characters)
 
 print(numbers)
+
+#브랜치테스트용
+#브랜치테스트용 diff 구문 이용
+print("브랜치테스트용눈에날뛰는거")
