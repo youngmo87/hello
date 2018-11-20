@@ -1,52 +1,80 @@
+
 import random
-
-
-
 class Card:
     cardtotal=[]
     def __init__(self):
         self.cardsort = ['S','C','H','D']
         self.cardnum = ['2','3','4','5','6','7','8','9','F','A','J','Q','K']
-        self.sort=len(self.cardsort)
-        self.num=len(self.cardnum)
+        self.card =[]
+        self.cardsready(self.cardsort, self.cardnum)
 
-    def calc(self):
-        for i in range(self.sort):
-            for k in range(self.num):
-                self.cardtotal.append(self.cardsort[i]+self.cardnum[k])
-card1=Card()
-card1.calc()
+    def cardsready(self, a, b):
+        for i in a:
+            for k in b:
+                self.card=i+k
+                self.cardtotal.append(self.card) 
 
-
-class Deck:
-    def__init__(self):
-    self.deck=[]
+        return random.shuffle(self.cardtotal)   
     
+
+class Deck(Card):
+    deck=[]
+    eachvalue=[]
+    def __init__(self):
+        self.cardtotal
+    
+    def valueassign(self, card):
+        if card[1] in ['J','Q','K','F'] : 
+            self.eachvalue = 10 
+        
+        elif 'A' in card[1]:
+            self.eachvalue = 11
+        
+        else:
+            self.eachvalue = int(card[1])
+
+        return self.eachvalue           
+
+        # self.valueassign(self.deck)
+        # self.valuelist=self.value.append(self.eachvalue)    
+
+pick=[]
+
+
+
+class Player(Deck):
+    def __init__(self):
+        self.deck=self.cardtotal.pop(0)
+        self.valueassign(self.deck)
+        
+    # def cardpick(self):    
+    #     self.valueassign(self.deck)
+
+card1=Card()
+deck1=Deck()
+player1=Player()
+print(card1.cardtotal)
+print(deck1.cardtotal)
+print(player1.deck)
+# print(player1.value)
+print(deck1.eachvalue)
+print(player1.eachvalue)
 card1.cardtotal=0
+deck1.shape=0
+deck1.deck=0
+deck1.cardtotal=0    
+player1.deck=0
 
 print(cardtotal)
     # def cardvalue(self):
     #     valueassign=cardtotal.pop(0)
     
-    #     if 'J','Q','K','F' in valueassign[1]: 
-    #         self.value = valueassign[0] + '10' 
-        
-    #     elif 'A' in valueassign:
-    #         self.value = valueassign[0] + '11' 
-        
-    #     else:
-    #         self.value = valluassign[1] 
-        
-        # if len(self.value)<=2:
-        #     self.value = int(valluassign[1])
-        # else:
-        #     self.value=10
+    #  
 
 
 dealerdeck=[]
 class Dealer(Card):
     def __init__(self):
-        cardtotal.pop(0)
         self.deck = dealerdeck.append(cardtotal.pop())
     
     def start(self):

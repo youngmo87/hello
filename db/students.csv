@@ -1,0 +1,17 @@
+3,"김일수",010-99
+1,"홍길동",010-2323-4545
+2,"홍길동",010-4545-5656
+1,"홍길동",010-2323-4545
+2,"홍길동",010-4545-5656
+3,"김일수",010-99
+1,"홍길동",010-2323-4545
+2,"홍길동",010-4545-5656
+3,"김일수",010-99
+1,"홍길동",010-2323-4545
+2,"홍길동",010-4545-5656
+3,"김일수",010-99
+CREATE TABLE Student(
+id integer primary key autoincrement not null,
+name text not null default 'aaa',
+mobile text null);
+CREATE TABLE sqlite_sequence(name,seq);
