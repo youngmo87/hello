@@ -1,3 +1,21 @@
+class Try1:
+    def __init__(self, a):
+        print("something")
+        print(a)
+Try1("dddd")
+
+print(Try1("dddd"))
+
+
+
+
+
+for i in a:
+    value+=int(i)
+
+print(value)
+
+
 import random
 cardtotal=[]
 cardsort = ['S','C','H','D']
