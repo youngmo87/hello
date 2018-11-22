@@ -27,12 +27,15 @@ class Card:
         return random.shuffle(self.cardtotal)   
     
 class Game(Card):
+    name=[]
+    hand=[]
+    value=[]
     print("게임클래스가생성됨")    
     def __init__(self):
         self.cardtotal
         for i in playerinit:
             i=Player(i)
-            Class.append(i)
+            # Class.append(i)
         self.name=i
     
     def valueassign(self, card):
@@ -206,8 +209,10 @@ class Dealer(Game):
 card=Card()
 dealer=Dealer()
 try1=Game()
+print(Class[1].name)
 # result=Result()
 try1.playerpick()
+print(try1.name)
 # print(Class[0].hand)
 # print(Class[0].value)
 # print(Class[1].hand)
@@ -218,13 +223,3 @@ try1.additionalpick()
 print(dealer.hand)
 print(dealer.value)
 
-# print(dealer.hand)
-# print(dealer.value)
-# print(try1.cardtotal)
-# print(Class[2].hand)
-# print(Class[2].value)
-# print(Class[3].hand)
-# print(Class[3].value)
-# print(dealer.value)
-# print(dealer.hand)
-# print(dealer.value)
