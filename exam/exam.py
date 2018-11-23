@@ -14,8 +14,6 @@
 
 
 students=[]
-
-
 class Student:
     def __init__(self, line):
         name, gender, age, grade, addr = line.strip().split(',')
@@ -47,8 +45,8 @@ class Point(Student):
         else:
             self.grade ="D학점"
     
-    # def __str__(self):
-    #     return "{}:{}:{}:{}".format(self.name[0]+"**", self.sex, self.age, grade, addr)
+    def __str__(self):
+        return "{}:{}:{}:{}".format(self.name[0]+"**", self.sex, self.age, grade, addr)
 
 with open("students.csv","r", encoding='utf8')as file:
     for i, line in enumerate(file):

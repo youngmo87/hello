@@ -24,6 +24,7 @@ class Card:
         return random.shuffle(self.cardtotal)   
     
 class Game(Card):
+    activeplayer=[]
     print("게임클래스가생성됨")    
     def __init__(self):
         # self.cardtotal
@@ -49,46 +50,61 @@ class Game(Card):
         self.hand.append(self.carddraw)
         self.valueassign(self.carddraw)
         self.value.append(self.eachvalue)
-
     
-    def cardpick2(self, name):
-        self.carddraw=self.cardtotal.pop(0)
-        self.hand.append(self.carddraw)
-        self.valueassign(self.carddraw)
-        self.value.append(self.eachvalue)
-        print("{}님 카드{} 뽑으셨네요 ? 현재카드는{}입니다.".format(self.name,self.carddraw,self.hand))
-
-    def dealerpick(self):
+    def additionalpick(self,name,):
         self.cardpick(self.name)
-        self.dealerscoring(self.hand, self.value)
+        
+
+
+    # def cardpick2(self, name):
+    #     self.carddraw=self.cardtotal.pop(0)
+    #     self.hand.append(self.carddraw)
+    #     self.valueassign(self.carddraw)
+    #     self.value.append(self.eachvalue)
+    #     print("{}님 카드{} 뽑으셨네요 ? 현재카드는{}입니다.".format(self.name,self.carddraw,self.hand))
+
+    # def dealerpick(self):
+    #     self.cardpick(self.name)
+    #     self.dealerscoring(self.hand, self.value)
      
-    def playerpick(self):
-        for i in playerclass:
-            i.cardpick(i.name)
+    # def playerpick(self):
+    #     for i in playerclass:
+    #         i.cardpick(i.name)
  
-    def additionalpick(self):
-        for i in playerclass:
-            i.cardpick(i.name)
-        self.cardpick(self.name)
-    
-    
-    
-    
     
     def waitingfordealer(self, name, hand, value):
         self.p_sum=0
         self.name=name
         self.hand=hand
         self.value=value
+        self.scoringstep(self.name, self.hand, self.value)
+    
+    def waitingforresult(self, name, hand, value):
+        self.p_sum=0
+        self.name=name
+        self.hand=hand
+        self.value=value
         for i in self.value:
             self.p_sum+=int(i)
+        self.choiceforgame(self,name,hand,value)
     
-        self.scoringstep(self.name, self.hand, self.value)
-
-                
+    def choiceforgame(self, name, hand, value):
+        msg=input("{}님 카드를 더 받으시겠습니까? 현재카드는{}입니다.\n 그만받기는 'S' 받으시려면 'H' 를 눌러주세요".format(name, hand))
+        if msg == 'S':
+            playerclass.remove(i)
+            activeplayernumber=playernumber-1
+            return self.waitingforscore(self.name, self.hand, self.value)
+        
+        elif msg == 'H': 
+            self.additionalpick(self.name)
+            return append.activeplayer(self.name, self.hand, self.value)
+        
+        else:
+            return msg        
     
-    def scoringstep(self, name, hand, value):
-        return Scoring(name,hand,value) 
+    
+    def scoringstep(self, name, hand, value, p_sum):
+        return Scoring(name,hand,value,p_sum) 
 
     # def calc(self, name, hand, value, finalresult):
     #     self.name=name
@@ -123,9 +139,13 @@ class Scoring(Game):
         self.value=value
         for i in self.value:
             self.p_sum+=int(i)
-        self.playerlogic(self.name, self.hand, self.value, self.p_sum)
+        self.choiceforgame(self,name,hand,value)
 
-       
+
+
+
+
+
     def playerlogic(self, name, hand, value, p_sum):
         # self.finalresult=0
         if '11' in value:
@@ -191,13 +211,10 @@ class Dealer(Game):
     value=[]
     def __init__(self):
         self.name='나는딜러다'
-        
-    def give1stcard(self):
+    
+    def givingacard(self):
        self.playerpick()
        self.cardpick(self.name)
-
-    def give2ndcard(self):
-        self.additionalpick()
 
     def dealerscoring(self, hand, value):
         self.valuesum=0
@@ -205,9 +222,8 @@ class Dealer(Game):
         self.value=value
         for i in self.value:
             self.valuesum+=int(i)
-        return self.dealerlogic(self.value, self.valuesum)
+        # return self.dealerlogic(self.value, self.valuesum)
     
-
     def d_valueforace(self, card):
         if card[1] in ['J','Q','K','F'] : 
             self.eachvalue = '10'
@@ -269,9 +285,11 @@ a=7
 card=Card()
 dealer=Dealer()
 game=Game()
-dealer.give1stcard()
-dealer.give2ndcard()
-
+dealer.givingacard()
+dealer.givingacard()
+for i in playerclass:
+    i.waitingfordealer(i.name,i.hand,i.value)
+               
 
 activeplayer=[]
 while True:
@@ -281,15 +299,11 @@ while True:
 
     dealer.cardpick(dealer.name)                
     
-
-
-
-        
-        else:
-            for i in activeplayer:
-                i.choiceforgame(i.name,i.hand,i.value)
-                dealer.cardpick(dealer.name)
-                continue
+    else:
+for i in activeplayer:
+    i.choiceforgame(i.name,i.hand,i.value)
+    dealer.cardpick(dealer.name)
+    continue
 
         
 
