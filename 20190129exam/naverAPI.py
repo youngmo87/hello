@@ -5,7 +5,7 @@ from naverAPI_SQL import save, get_conn
 
 url = "https://openapi.naver.com/v1/search/blog.json"
 
-title = "파이썬"
+title = "캄보디아"
 params = {
     "query": title,
     "display": 100,
@@ -21,6 +21,10 @@ headers = {
 result = requests.get(url, params=params, headers=headers).text
 
 jsonData = json.loads(result)
+
+print(jsonData)
+
+exit()
 
 Blogger_sql = [] 
 BlogPost = []
