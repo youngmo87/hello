@@ -37,8 +37,8 @@ def max_pool(x):
 # Convolution(합성곱) Layer L1 (cf. L1 ~ Ln)
 with tf.name_scope('conv1') as scope:
     # 5 X 5 필터, input=1(흑백), output=32 : 이미지 1개를 32개의 필터(출력)로!
-    W_conv1 = weight_variable('conv1', [5, 5, 1, 64])
-    b_conv1 = bias_variable('conv1', 64)
+    W_conv1 = weight_variable('conv1', [5, 5, 1, 32])
+    b_conv1 = bias_variable('conv1', 32)
     x_image = tf.reshape(x, [-1, 28, 28, 1])     # -1(n개)의 28 X 28 X 1 이미지
     h_conv1 = tf.nn.relu(conv2d(x_image, W_conv1) + b_conv1)      # cf. tf.sigmoid
 
@@ -49,22 +49,33 @@ with tf.name_scope('pool1') as scope:
 # Convolution(합성곱) Layer L2
 with tf.name_scope('conv2') as scope:
     # 5 X 5 filter, 32개 입력, 64개 필터(출력)
-    W_conv2 = weight_variable('conv2', [5, 5, 64, 128])
-    b_conv2 = bias_variable('conv2', 128)
+    W_conv2 = weight_variable('conv2', [5, 5, 32, 64])
+    b_conv2 = bias_variable('conv2', 64)
     h_conv2 = tf.nn.relu(conv2d(h_pool1, W_conv2) + b_conv2)
 
 # Max-Pooling Layer2
 with tf.name_scope('pool2') as scope:
     h_pool2 = max_pool(h_conv2)
 
+# Convolution(합성곱) Layer L3
+with tf.name_scope('conv3') as scope:
+    # 5 X 5 filter, 32개 입력, 64개 필터(출력)
+    W_conv3 = weight_variable('conv3', [5, 5, 64, 128])
+    b_conv3 = bias_variable('conv3', 128)
+    h_conv3 = tf.nn.relu(conv2d(h_pool2, W_conv3) + b_conv3)
+
+# Max-Pooling Layer3
+with tf.name_scope('pool3') as scope:
+    h_pool3 = max_pool(h_conv3)
+
 # fully-connect (1차원으로 펼치기)
 with tf.name_scope('fully_connected') as scope:
-    W_fc = weight_variable('fc', [7 * 7 * 128, 1024])  # 7 = 28 % 2 % 2  (2개의 Hidden Layer)
+    W_fc = weight_variable('fc', [4 * 4 * 128, 1024])  # 7 = 28 % 2 % 2  (2개의 Hidden Layer)
     b_fc = bias_variable('fc', 1024)
 
     # -1(n개)를 1차원 list로 펼치기(3,136)
-    h_pool2_flat = tf.reshape(h_pool2, [-1, 7 * 7 * 128])
-    h_fc = tf.nn.relu(tf.matmul(h_pool2_flat, W_fc) + b_fc)
+    h_pool3_flat = tf.reshape(h_pool3, [-1, 4 * 4 * 128])
+    h_fc = tf.nn.relu(tf.matmul(h_pool3_flat, W_fc) + b_fc)
 
 # dropout (과잉적합 막기, fast-forward, split-merge, RNN)
 with tf.name_scope('dropout') as scope:
@@ -100,7 +111,7 @@ def set_feed(images, labels, prob):
 with tf.Session() as sess:
     sess.run(tf.global_variables_initializer())
     test_fd = set_feed(mnist.test.images, mnist.test.labels, 1) 
-    for step in range(150):
+    for step in range(200):
         batch = mnist.train.next_batch(50)
         fd = set_feed(batch[0], batch[1], 0.5)  # test: 0.5
         _, loss = sess.run([train_step, cross_entropy], feed_dict=fd)
